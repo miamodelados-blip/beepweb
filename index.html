@@ -311,16 +311,27 @@ dialog::backdrop{background:rgba(5,5,5,.72);backdrop-filter:blur(6px)}
     var s=performance.now();
     (function f(now){var p=Math.min((now-s)/ms,1);dbv.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(s);
   }
+  // Sonido: subí tu archivo a la carpeta assets con este nombre (o cambialo acá)
+  var AUDIO_SRC='assets/audio.mp3';
+  var au=new Audio(AUDIO_SRC);au.preload='auto';
+  function playSound(cb){
+    try{au.currentTime=0}catch(e){}
+    var p=au.play();
+    if(p&&p.then)p.then(function(){cb(isFinite(au.duration)?Math.min(Math.max(au.duration*1000,1500),8000):2600)},function(){beep();cb(2600)});
+    else cb(2600);
+  }
+  function endAlarm(){
+    stage.classList.remove('on');waves.classList.remove('go');active=false;
+    au.pause();try{au.currentTime=0}catch(e){}
+    dbv.textContent='0';hint.textContent='Tocá el dispositivo para ver cómo reacciona.';
+  }
   dev.addEventListener('click',function(){
     if(active)return;active=true;
     stage.classList.add('on');waves.classList.add('go');
     hint.textContent='Así se ve y se siente: sonido, luz y ondas.';
-    countTo(130,900);beep();
+    countTo(130,900);
     clearTimeout(timer);
-    timer=setTimeout(function(){
-      stage.classList.remove('on');waves.classList.remove('go');active=false;
-      dbv.textContent='0';hint.textContent='Tocá el dispositivo para ver cómo reacciona.';
-    },2600);
+    playSound(function(ms){timer=setTimeout(endAlarm,ms)});
   });
   if(!reduce){
     addEventListener('scroll',function(){
