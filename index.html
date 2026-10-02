@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alarma personal SOS 130 dB con luz LED | Tu seguridad en un solo click</title>
+<title>beep | Alarma personal SOS 130 dB con luz LED</title>
 <meta name="description" content="Alarma personal tipo llavero: 130 dB, luz LED y activación con pin. Compacta, recargable por USB y lista para emergencias.">
 <meta name="theme-color" content="#050505">
+<link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
@@ -14,22 +15,26 @@
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{font-family:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--ink);color:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit}
+a{color:inherit}img{display:block;max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .wrap{width:var(--w);margin-inline:auto}
-h1,h2,h3{font-stretch:125%;font-weight:800;line-height:.95;letter-spacing:-.03em}
-.btn{display:inline-flex;align-items:center;gap:.6em;padding:1em 1.8em;border-radius:99px;background:var(--blue);color:var(--ink);font-weight:700;text-decoration:none;transition:transform .2s,background .2s}
+.split>*{min-width:0}
+h1,h2,h3{font-stretch:125%;font-weight:800;line-height:.95;letter-spacing:-.03em;overflow-wrap:break-word}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;padding:1em 1.8em;border-radius:99px;background:var(--blue);color:var(--ink);font-weight:700;text-decoration:none;border:0;transition:transform .2s,background .2s}
 .btn:hover{transform:scale(1.04);background:#fff}
 .btn.ghost{background:transparent;color:inherit;border:1.5px solid currentColor}
 .btn.ghost:hover{background:var(--paper);color:var(--ink)}
+.btn svg{width:1.3em;height:1.3em;fill:currentColor}
 /* nav */
-nav{position:fixed;inset:0 0 auto;z-index:20;padding:16px 0;mix-blend-mode:normal;backdrop-filter:blur(14px);background:rgba(5,5,5,.55)}
+nav{position:fixed;inset:0 0 auto;z-index:20;padding:8px 0;backdrop-filter:blur(14px);background:rgba(5,5,5,.55)}
 nav .wrap{display:flex;justify-content:space-between;align-items:center}
-.logo{font-stretch:125%;font-weight:900;letter-spacing:.02em;text-decoration:none}
-.logo i{font-style:normal;color:var(--blue)}
+.logo{display:block;transition:transform .3s}
+.logo:hover{transform:scale(1.06) rotate(-3deg)}
+.logo img{height:64px;width:auto}
 nav .btn{padding:.6em 1.3em;font-size:.9rem}
 /* hero */
-.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:120px 0 80px;position:relative;overflow:hidden}
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:130px 0 80px;position:relative;overflow:hidden}
 .hero h1{font-size:clamp(2.8rem,9vw,8rem);max-width:12ch;margin-inline:auto}
 .hero p.sub{color:#B8BFC6;max-width:46ch;margin:22px auto 0;font-size:1.1rem}
 .stage{position:relative;width:min(320px,70vw);aspect-ratio:1/1.5;margin:40px auto 10px;display:grid;place-items:center}
@@ -49,8 +54,9 @@ nav .btn{padding:.6em 1.3em;font-size:.9rem}
 .db small{font-size:.3em;color:var(--blue);margin-left:.15em}
 .hint{color:var(--mut);font-size:.9rem;margin-top:6px}
 .hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-/* decibeles */
-.loud{background:var(--fog);color:var(--ink);padding:clamp(80px,14vw,170px) 0}
+/* decibeles + bolsa */
+.loud{background:var(--fog);color:var(--ink);padding:clamp(80px,14vw,170px) 0;position:relative;overflow:hidden}
+.loud .wrap{position:relative;z-index:1}
 .loud h2{font-size:clamp(2.4rem,7vw,6rem);max-width:14ch}
 .loud p{max-width:52ch;margin-top:22px;color:#3b4148;font-size:1.1rem}
 .bars{margin-top:60px;display:grid;gap:14px}
@@ -59,51 +65,101 @@ nav .btn{padding:.6em 1.3em;font-size:.9rem}
 .track{height:18px;background:#d3d8dd;border-radius:9px;overflow:hidden}
 .fill{height:100%;width:0;background:var(--ink);border-radius:9px;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
 .bar.hot .fill{background:var(--blue-d)}
-.note{font-size:.8rem;color:#6b737b;margin-top:18px}
+.bag{display:block;width:min(210px,52vw);margin:50px auto 0;transform:rotate(-9deg);filter:drop-shadow(0 24px 24px rgba(0,0,0,.28));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.bag:hover{transform:rotate(-3deg) translateY(-8px)}
+@media (min-width:1100px){.bag{position:absolute;right:-2.5vw;top:clamp(70px,9vw,130px);width:clamp(230px,23vw,340px);margin:0;transform:rotate(-12deg)}.bag:hover{transform:rotate(-6deg) translateX(-10px)}}
 /* features */
 .feat{padding:clamp(80px,12vw,150px) 0;background:var(--paper);color:var(--ink)}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
-.crop{position:relative;aspect-ratio:581/615;overflow:hidden;border-radius:28px;background:var(--fog)}
-.crop img{position:absolute;width:176.2%;max-width:none;left:-76.2%;top:-41.5%}
+.crop{position:relative;aspect-ratio:1/1.1;overflow:hidden;border-radius:28px;background:radial-gradient(circle at 50% 46%,#4a525b 0,#15181c 68%);display:grid;place-items:center}
+.devwrap{position:relative;width:62%;aspect-ratio:1080/1350;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.devwrap img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 20px 24px rgba(0,0,0,.55))}
+.dark{position:absolute;left:50.7%;top:48.5%;width:18.8%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 40% 35%,#3a3f45,#14161a 72%);box-shadow:inset 0 0 0 2px #0a0b0c;transition:opacity .3s;pointer-events:none}
+.dglow,.dflare{position:absolute;left:50.7%;top:48.5%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;opacity:0;transition:opacity .3s;pointer-events:none;mix-blend-mode:screen}
+.dglow{width:46%;background:radial-gradient(circle,#fff 0,rgba(255,255,255,.92) 14%,rgba(200,230,255,.5) 34%,transparent 68%)}
+.dflare{width:190%;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 60%)}
+.devwrap.lit .dark,.devwrap:focus-visible .dark{opacity:0}
+.devwrap.lit .dglow,.devwrap.lit .dflare,.devwrap:focus-visible .dglow,.devwrap:focus-visible .dflare{opacity:1}
+.devwrap.lit .dglow{animation:burst .6s ease-out}
+@media (hover:hover){
+ .devwrap:hover .dark{opacity:0}
+ .devwrap:hover .dglow,.devwrap:hover .dflare{opacity:1}
+ .devwrap:hover .dglow{animation:burst .6s ease-out}
+}
+@keyframes burst{0%{transform:translate(-50%,-50%) scale(.3)}40%{transform:translate(-50%,-50%) scale(1.5)}100%{transform:translate(-50%,-50%) scale(1)}}
+.crop small{position:absolute;bottom:16px;inset-inline:0;text-align:center;color:var(--mut);font-size:.8rem}
 .feat h2{font-size:clamp(2.2rem,5.5vw,4.6rem)}
 .list{margin-top:36px;display:grid;gap:26px;list-style:none;padding:0}
 .list li{border-top:1.5px solid var(--ink);padding-top:14px}
 .list h3{font-stretch:110%;font-size:1.25rem;letter-spacing:-.01em;line-height:1.2}
 .list p{color:#4a5158;margin-top:4px}
-/* pasos */
-.steps{padding:clamp(80px,12vw,150px) 0}
+/* pasos + textura de fondo */
+.steps{padding:clamp(80px,12vw,150px) 0;position:relative;overflow:hidden}
+.steps .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%;opacity:.17;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
+.steps .wrap{position:relative}
 .steps h2{font-size:clamp(2.2rem,6vw,5rem);max-width:13ch}
 .row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,50px);margin-top:60px}
 .step{border-top:2px solid var(--blue);padding-top:20px}
 .step span{font-stretch:125%;font-weight:900;font-size:3.4rem;color:var(--blue);line-height:1}
 .step h3{font-size:1.4rem;letter-spacing:-.01em;margin:14px 0 6px;line-height:1.15}
-.step p{color:#B8BFC6}
+.step p{color:#D3D8DD}
 /* kit */
 .kit{background:var(--fog);color:var(--ink);padding:clamp(70px,10vw,130px) 0}
-.kit img{width:100%;border-radius:28px;display:block}
-.kit h2{font-size:clamp(2.2rem,5vw,4rem)}
-.kit ul{margin-top:28px;padding-left:1.1em;display:grid;gap:10px;font-size:1.1rem}
+.kit h2{font-size:clamp(2rem,4.6vw,3.8rem);max-width:15ch;margin-bottom:clamp(30px,5vw,56px)}
+.kstage{position:relative;aspect-ratio:4/5;width:min(450px,100%);margin-inline:auto;border-radius:28px;overflow:hidden;background:radial-gradient(circle at 50% 38%,#fafbfc,#c6ced6)}
+.kstage img{position:absolute;inset:5%;width:90%;height:90%;object-fit:contain;filter:drop-shadow(0 18px 18px rgba(0,0,0,.32));opacity:0;transform:scale(.94);transition:opacity .45s,transform .45s}
+.kstage img.show{opacity:1;transform:none}
+.klist{border-bottom:1.5px solid var(--ink)}
+.kitem{display:block;width:100%;text-align:left;background:none;border:0;border-top:1.5px solid var(--ink);padding:18px 0}
+.kitem strong{display:flex;justify-content:space-between;gap:16px;font-stretch:110%;font-size:1.2rem;letter-spacing:-.01em}
+.kitem strong::after{content:"+";font-size:1.5rem;line-height:1;transition:transform .3s}
+.kitem.on strong::after{transform:rotate(45deg)}
+.kitem .d{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s;color:#3b4148}
+.kitem .d>span{overflow:hidden;display:block}
+.kitem.on .d{grid-template-rows:1fr}
+.kitem.on .d>span{padding-top:8px}
+.khint{margin-top:16px;font-size:.9rem;color:#6b737b}
+.kit .btn{margin-top:26px;background:var(--ink);color:#fff}
+.kit .btn:hover{background:var(--blue-d)}
 /* final */
 .final{text-align:center;padding:clamp(100px,16vw,200px) 0 140px;position:relative;overflow:hidden}
 .final h2{font-size:clamp(2.8rem,9vw,8rem);max-width:11ch;margin:0 auto 34px}
-.final .btn{font-size:1.15rem}
+.final .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.final .btn{font-size:1.1rem}
 .final p{color:var(--mut);margin-top:22px;font-size:.9rem}
 footer{color:var(--mut);text-align:center;font-size:.8rem;padding:0 20px 90px}
 .sticky{position:fixed;inset:auto 14px 14px;z-index:30;display:none}
-.sticky .btn{width:100%;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.sticky .btn{width:100%;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+/* elegir dónde comprar */
+dialog{border:0;padding:0;background:transparent;margin:auto;max-width:none;overflow:visible}
+dialog::backdrop{background:rgba(5,5,5,.72);backdrop-filter:blur(6px)}
+.card{width:min(440px,92vw);background:var(--paper);color:var(--ink);border-radius:28px;padding:30px;animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:scale(.92) translateY(20px)}}
+.card h2{font-size:1.7rem;letter-spacing:-.02em;margin-bottom:6px;line-height:1.1}
+.card p.s{color:#4a5158;margin-bottom:20px}
+.opt{display:flex;gap:16px;align-items:center;text-decoration:none;border:1.5px solid var(--ink);border-radius:20px;padding:16px 18px;margin-top:12px;transition:background .2s,transform .2s}
+.opt:hover{background:var(--fog);transform:translateX(4px)}
+.opt svg{width:32px;height:32px;flex:none}
+.opt strong{display:block}.opt span{font-size:.9rem;color:#4a5158}
+.opt.wa svg{fill:#1FAF54}
+.x{display:block;margin:18px auto 0;background:none;border:0;color:#6b737b;text-decoration:underline}
 /* reveal: una sola secuencia de entrada en el hero */
 .in{opacity:0;transform:translateY(30px);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards}
 .in:nth-child(2){animation-delay:.15s}.in:nth-child(3){animation-delay:.3s}.in:nth-child(4){animation-delay:.45s}.in:nth-child(5){animation-delay:.6s}
 @keyframes up{to{opacity:1;transform:none}}
-@media (max-width:820px){.split,.row{grid-template-columns:1fr}.bar{grid-template-columns:1fr 60px}.bar span{grid-column:1/-1}.sticky{display:block}}
+@media (max-width:820px){
+ .split{grid-template-columns:1fr}.row{grid-template-columns:1fr}.bar{grid-template-columns:1fr 60px}.bar span{grid-column:1/-1}.sticky{display:block}
+ .logo img{height:50px}
+ .kit h2{text-align:center;margin-inline:auto}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.in{opacity:1;transform:none}html{scroll-behavior:auto}.fill{width:var(--v)!important}}
 </style>
 </head>
 <body>
 
 <nav><div class="wrap">
-  <a class="logo" href="#top" aria-label="Inicio">SOS<i>.</i>alarma</a>
-  <a class="btn cta-link" href="https://www.mercadolibre.com.ar/up/MLAU4732798121?matt_tool=89488245&amp;pdp_filters=item_id%253AMLA1995876969" target="_blank" rel="noopener">Comprar</a>
+  <a class="logo" href="#top" aria-label="beep, inicio"><img src="assets/logo.png" alt="beep"></a>
+  <a class="btn" href="#comprar" data-buy>Comprar</a>
 </div></nav>
 
 <main id="top">
@@ -112,14 +168,14 @@ footer{color:var(--mut);text-align:center;font-size:.8rem;padding:0 20px 90px}
     <h1 class="in">Tu seguridad en un solo click.</h1>
     <p class="sub in">Alarma personal de 130 dB con luz LED. Se cuelga del llavero y se activa con un tirón.</p>
     <div class="stage in" id="stage">
-      <div class="waves" aria-hidden="true" style="position:absolute;inset:0"><i class="ring"></i><i class="ring"></i><i class="ring"></i><i class="ring"></i></div>
+      <div class="waves" id="waves" aria-hidden="true" style="position:absolute;inset:0"><i class="ring"></i><i class="ring"></i><i class="ring"></i><i class="ring"></i></div>
       <button class="device" id="device" aria-label="Probar la alarma: luz y ondas de sonido"><span class="lens"><span class="led"></span></span></button>
     </div>
     <div class="in">
       <div class="db"><span id="dbv" aria-live="off">0</span><small>dB</small></div>
       <p class="hint" id="hint">Tocá el dispositivo para ver cómo reacciona.</p>
       <div class="cta">
-        <a class="btn cta-link" href="https://www.mercadolibre.com.ar/up/MLAU4732798121?matt_tool=89488245&amp;pdp_filters=item_id%253AMLA1995876969" target="_blank" rel="noopener">Comprar en Mercado Libre</a>
+        <a class="btn" href="#comprar" data-buy>Comprar ahora</a>
         <a class="btn ghost" href="#decibeles">Ver cómo suena</a>
       </div>
     </div>
@@ -131,18 +187,24 @@ footer{color:var(--mut);text-align:center;font-size:.8rem;padding:0 20px 90px}
     <h2>130 dB que se escuchan a la distancia.</h2>
     <p>Un sonido agudo y constante que llama la atención de quienes están cerca y hace dudar a quien no debería estar ahí.</p>
     <div class="bars" id="bars">
-      <div class="bar"><span>Conversación</span><div class="track"><div class="fill" data-v="60" style="--v:46%"></div></div><b>60 dB</b></div>
-      <div class="bar"><span>Tránsito intenso</span><div class="track"><div class="fill" data-v="85" style="--v:65%"></div></div><b>85 dB</b></div>
-      <div class="bar"><span>Bocina de auto</span><div class="track"><div class="fill" data-v="110" style="--v:85%"></div></div><b>110 dB</b></div>
-      <div class="bar hot"><span>Tu alarma SOS</span><div class="track"><div class="fill" data-v="130" style="--v:100%"></div></div><b>130 dB</b></div>
+      <div class="bar"><span>Conversación</span><div class="track"><div class="fill" style="--v:46%"></div></div><b>60 dB</b></div>
+      <div class="bar"><span>Tránsito intenso</span><div class="track"><div class="fill" style="--v:65%"></div></div><b>85 dB</b></div>
+      <div class="bar"><span>Bocina de auto</span><div class="track"><div class="fill" style="--v:85%"></div></div><b>110 dB</b></div>
+      <div class="bar hot"><span>Tu alarma beep</span><div class="track"><div class="fill" style="--v:100%"></div></div><b>130 dB</b></div>
     </div>
-    <p class="note">Valores de referencia. El nivel de sonido de 130 dB es el indicado en la publicación del producto.</p>
   </div>
+  <img class="bag" src="assets/bolsa.png" alt="Bolsa de beep: ¡Hola, estoy listo para cuidarte!" width="1080" height="1350" loading="lazy">
 </section>
 
 <section class="feat">
   <div class="wrap split">
-    <div class="crop"><img src="assets/llavero.png" alt="Alarma negra colgada de un llavero junto a las llaves de un auto" loading="lazy" width="1024" height="1024"></div>
+    <div class="crop">
+      <button class="devwrap" id="devwrap" aria-label="Encender o apagar la luz LED del dispositivo">
+        <img src="assets/dispositivo.png" alt="Alarma personal beep" width="1080" height="1350">
+        <span class="dark"></span><span class="dflare"></span><span class="dglow"></span>
+      </button>
+      <small>Pasá el cursor (o tocá) para encender la luz</small>
+    </div>
     <div>
       <h2>Pequeña. Siempre a mano.</h2>
       <ul class="list">
@@ -156,6 +218,7 @@ footer{color:var(--mut);text-align:center;font-size:.8rem;padding:0 20px 90px}
 </section>
 
 <section class="steps">
+  <img class="bgimg" src="assets/fondo.png" alt="" aria-hidden="true" loading="lazy">
   <div class="wrap">
     <h2>Tres pasos. Ninguno complicado.</h2>
     <div class="row">
@@ -167,40 +230,65 @@ footer{color:var(--mut);text-align:center;font-size:.8rem;padding:0 20px 90px}
 </section>
 
 <section class="kit">
-  <div class="wrap split">
-    <img src="assets/kit.png" alt="Caja, cable USB, llavero metálico y alarma personal negra con luz LED" loading="lazy" width="1024" height="1024">
-    <div>
-      <h2>Todo lo que necesitás, en la caja.</h2>
-      <ul>
-        <li>Alarma personal con luz LED</li>
-        <li>Cable de carga USB</li>
-        <li>Llavero metálico</li>
-      </ul>
-      <p style="margin-top:30px"><a class="btn cta-link" style="background:var(--ink);color:#fff" href="https://www.mercadolibre.com.ar/up/MLAU4732798121?matt_tool=89488245&amp;pdp_filters=item_id%253AMLA1995876969" target="_blank" rel="noopener">Quiero la mía</a></p>
+  <div class="wrap">
+    <h2>Todo lo que necesitás, en la caja.</h2>
+    <div class="split">
+      <div class="kstage" id="kstage">
+        <img class="show" src="assets/kit-completo.png" alt="Kit completo: caja, cable USB, gancho metálico y alarma" loading="lazy">
+        <img src="assets/dispositivo.png" alt="Alarma personal beep" loading="lazy">
+        <img src="assets/cable-de-cargar.png" alt="Cable de carga USB" loading="lazy">
+        <img src="assets/gancho.png" alt="Llavero metálico" loading="lazy">
+      </div>
+      <div>
+        <div class="klist" id="klist">
+          <button class="kitem"><strong>Alarma personal</strong><span class="d"><span>130 dB de potencia: un sonido agudo y constante que alerta a quienes están cerca y disuade al instante. Incluye luz LED y activación con pin.</span></span></button>
+          <button class="kitem"><strong>Cable de carga USB</strong><span class="d"><span>Es recargable por USB, de forma sencilla: conectala cuando haga falta y volvé a tenerla lista.</span></span></button>
+          <button class="kitem"><strong>Llavero metálico</strong><span class="d"><span>Resistente y práctico: sirve para colgarla cómodamente de la cartera, la mochila o tus llaves.</span></span></button>
+        </div>
+        <p class="khint">Pasá el cursor por cada elemento (o tocalo) para verlo en detalle.</p>
+        <a class="btn" href="#comprar" data-buy>Quiero la mía</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="final">
+<section class="final" id="comprar">
   <div class="wrap">
     <h2>Tu tranquilidad cabe en tu mano.</h2>
-    <a class="btn cta-link" href="https://www.mercadolibre.com.ar/up/MLAU4732798121?matt_tool=89488245&amp;pdp_filters=item_id%253AMLA1995876969" target="_blank" rel="noopener">Comprar en Mercado Libre</a>
-    <p>Compra protegida a través de Mercado Libre.</p>
+    <div class="cta">
+      <a class="btn" href="https://www.mercadolibre.com.ar/up/MLAU4732798121?matt_tool=89488245&amp;pdp_filters=item_id%253AMLA1995876969" target="_blank" rel="noopener">Comprar en Mercado Libre</a>
+      <a class="btn ghost" href="https://wa.me/5491130654075?text=Hola!%20quiero%20comprar%20mi%20alarma!" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.7-.9c.2-.3.4-.2.6-.1l1.8.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Comprar por WhatsApp</a>
+    </div>
+    <p>Elegí cómo comprar: Mercado Libre con compra protegida o atención directa por WhatsApp.</p>
   </div>
 </section>
 </main>
 
 <footer>Esta alarma no reemplaza a los servicios de emergencia. Ante un peligro, llamá al 911.</footer>
 
-<div class="sticky"><a class="btn cta-link" href="https://www.mercadolibre.com.ar/up/MLAU4732798121?matt_tool=89488245&amp;pdp_filters=item_id%253AMLA1995876969" target="_blank" rel="noopener">Comprar en Mercado Libre</a></div>
+<div class="sticky"><a class="btn" href="#comprar" data-buy>Comprar</a></div>
+
+<dialog id="buy" aria-labelledby="buyT">
+  <div class="card">
+    <h2 id="buyT">¿Cómo querés comprarla?</h2>
+    <p class="s">Elegí la opción que prefieras.</p>
+    <a class="opt" href="https://www.mercadolibre.com.ar/up/MLAU4732798121?matt_tool=89488245&amp;pdp_filters=item_id%253AMLA1995876969" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 10.5h10L19.5 7H7M9 19.5a1.5 1.5 0 1 0 0 .01M16 19.5a1.5 1.5 0 1 0 0 .01" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><strong>Mercado Libre</strong><span>Compra protegida</span></div></a>
+    <a class="opt wa" href="https://wa.me/5491130654075?text=Hola!%20quiero%20comprar%20mi%20alarma!" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.7-.9c.2-.3.4-.2.6-.1l1.8.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+      <div><strong>WhatsApp</strong><span>Hablá directo con nosotros</span></div></a>
+    <button class="x" id="bx">Cerrar</button>
+  </div>
+</dialog>
 
 <script>
 (function(){
-  var stage=document.getElementById('stage'),dev=document.getElementById('device'),
-      waves=stage.querySelector('.waves'),dbv=document.getElementById('dbv'),hint=document.getElementById('hint'),
-      reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,active=false,timer,ctx;
+  var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
 
-  // Prueba de la alarma: luz, ondas y contador. El sonido es suave y solo dura unos segundos.
+  // ===== Hero: prueba de la alarma (sin cambios) =====
+  var stage=$('#stage'),dev=$('#device'),waves=$('#waves'),dbv=$('#dbv'),hint=$('#hint'),
+      reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,active=false,timer,ctx;
   function beep(){
     try{
       ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();
@@ -225,7 +313,6 @@ footer{color:var(--mut);text-align:center;font-size:.8rem;padding:0 20px 90px}
       dbv.textContent='0';hint.textContent='Tocá el dispositivo para ver cómo reacciona.';
     },2600);
   });
-  // Profundidad suave (parallax) del dispositivo con el scroll
   if(!reduce){
     addEventListener('scroll',function(){
       var y=Math.min(scrollY,700);
@@ -233,16 +320,38 @@ footer{color:var(--mut);text-align:center;font-size:.8rem;padding:0 20px 90px}
     },{passive:true});
   }
 
-  // Barras de decibeles al entrar en pantalla
-  var bars=document.getElementById('bars');
+  // ===== Barras de decibeles =====
+  var bars=$('#bars');
+  function fillBars(){$$('.fill',bars).forEach(function(f,i){setTimeout(function(){f.style.width=f.style.getPropertyValue('--v')},i*180)})}
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(e,o){
-      if(e[0].isIntersecting){
-        bars.querySelectorAll('.fill').forEach(function(f,i){setTimeout(function(){f.style.width=f.style.getPropertyValue('--v')},i*180)});
-        o.disconnect();
-      }
-    },{threshold:.35}).observe(bars);
-  }else{bars.querySelectorAll('.fill').forEach(function(f){f.style.width=f.style.getPropertyValue('--v')})}
+    new IntersectionObserver(function(e,o){if(e[0].isIntersecting){fillBars();o.disconnect()}},{threshold:.35}).observe(bars);
+  }else fillBars();
+
+  // ===== Dispositivo: se enciende la luz con hover (o toque en celular) =====
+  var dw=$('#devwrap');
+  dw.addEventListener('click',function(){dw.classList.toggle('lit')});
+
+  // ===== Caja: cada elemento cambia la imagen y muestra su detalle =====
+  var items=$$('.kitem'),imgs=$$('#kstage img'),touch=false;
+  function setK(i){
+    items.forEach(function(b,j){b.classList.toggle('on',j===i)});
+    imgs.forEach(function(im,j){im.classList.toggle('show',i<0?j===0:j===i+1)});
+  }
+  items.forEach(function(b,i){
+    b.addEventListener('pointerdown',function(e){touch=e.pointerType!=='mouse'});
+    b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')setK(i)});
+    b.addEventListener('focus',function(){setK(i)});
+    b.addEventListener('click',function(){setK(touch&&b.classList.contains('on')?-1:i)});
+  });
+  $('#klist').addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')setK(-1)});
+
+  // ===== Elegir dónde comprar (Mercado Libre o WhatsApp) =====
+  var buy=$('#buy');
+  $$('[data-buy]').forEach(function(a){a.addEventListener('click',function(e){
+    if(buy.showModal){e.preventDefault();buy.showModal()}
+  })});
+  $('#bx').onclick=function(){buy.close()};
+  buy.addEventListener('click',function(e){if(e.target===buy)buy.close()});
 })();
 </script>
 </body>
