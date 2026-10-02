@@ -291,6 +291,13 @@ dialog::backdrop{background:rgba(5,5,5,.72);backdrop-filter:blur(6px)}
   </div>
 </dialog>
 
+<audio id="alarmAudio" preload="auto">
+  <source src="assets/audio.mp3">
+  <source src="assets/audio.wav">
+  <source src="assets/audio.m4a">
+  <source src="assets/audio.ogg">
+</audio>
+
 <script>
 (function(){
   var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
@@ -311,13 +318,15 @@ dialog::backdrop{background:rgba(5,5,5,.72);backdrop-filter:blur(6px)}
     var s=performance.now();
     (function f(now){var p=Math.min((now-s)/ms,1);dbv.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(s);
   }
-  // Sonido: subí tu archivo a la carpeta assets con este nombre (o cambialo acá)
-  var AUDIO_SRC='assets/audio.mp3';
-  var au=new Audio(AUDIO_SRC);au.preload='auto';
+  // Sonido: subí tu archivo a assets/ (audio.mp3, audio.wav, audio.m4a o audio.ogg). Se usa el primero que exista.
+  var au=$('#alarmAudio');au.load();
   function playSound(cb){
     try{au.currentTime=0}catch(e){}
     var p=au.play();
-    if(p&&p.then)p.then(function(){cb(isFinite(au.duration)?Math.min(Math.max(au.duration*1000,1500),8000):2600)},function(){beep();cb(2600)});
+    if(p&&p.then)p.then(function(){cb(isFinite(au.duration)?Math.min(Math.max(au.duration*1000,1500),8000):2600)},function(err){
+      console.warn('No se pudo reproducir assets/audio.*:',err&&err.name,err&&err.message,'| archivo:',au.currentSrc||'(ninguno cargó)','| código de error:',au.error&&au.error.code);
+      beep();cb(2600);
+    });
     else cb(2600);
   }
   function endAlarm(){
