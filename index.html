@@ -65,7 +65,7 @@ nav .btn{padding:.6em 1.3em;font-size:.9rem}
 .track{height:18px;background:#d3d8dd;border-radius:9px;overflow:hidden}
 .fill{height:100%;width:0;background:var(--ink);border-radius:9px;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
 .bar.hot .fill{background:var(--blue-d)}
-.bag{display:block;width:min(210px,52vw);margin:50px auto 0;transform:rotate(-9deg);filter:drop-shadow(0 24px 24px rgba(0,0,0,.28));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.bag{display:block;height:auto;width:min(210px,52vw);margin:50px auto 0;transform:rotate(-9deg);filter:drop-shadow(0 24px 24px rgba(0,0,0,.28));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .bag:hover{transform:rotate(-3deg) translateY(-8px)}
 @media (min-width:1100px){.bag{position:absolute;right:-2.5vw;top:clamp(70px,9vw,130px);width:clamp(230px,23vw,340px);margin:0;transform:rotate(-12deg)}.bag:hover{transform:rotate(-6deg) translateX(-10px)}}
 /* features */
@@ -127,7 +127,13 @@ nav .btn{padding:.6em 1.3em;font-size:.9rem}
 .final .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .final .btn{font-size:1.1rem}
 .final p{color:var(--mut);margin-top:22px;font-size:.9rem}
+.ig{display:inline-flex;align-items:center;gap:.55em;text-decoration:none;font-weight:600;transition:color .2s,transform .2s}
+.ig:hover{color:var(--blue);transform:translateY(-2px)}
+.ig svg{width:1.4em;height:1.4em;fill:none;stroke:currentColor;stroke-width:1.8}
+.ig svg circle:last-child{fill:currentColor;stroke:none}
+.final .ig{color:#fff;font-size:1.05rem;margin-top:26px}
 footer{color:var(--mut);text-align:center;font-size:.8rem;padding:0 20px 90px}
+footer .ig{color:var(--paper);font-size:1rem;margin-bottom:14px}
 .sticky{position:fixed;inset:auto 14px 14px;z-index:30;display:none}
 .sticky .btn{width:100%;box-shadow:0 10px 30px rgba(0,0,0,.5)}
 /* elegir dónde comprar */
@@ -259,12 +265,15 @@ dialog::backdrop{background:rgba(5,5,5,.72);backdrop-filter:blur(6px)}
       <a class="btn" href="https://www.mercadolibre.com.ar/up/MLAU4732798121?matt_tool=89488245&amp;pdp_filters=item_id%253AMLA1995876969" target="_blank" rel="noopener">Comprar en Mercado Libre</a>
       <a class="btn ghost" href="https://wa.me/5491130654075?text=Hola!%20quiero%20comprar%20mi%20alarma!" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.7-.9c.2-.3.4-.2.6-.1l1.8.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Comprar por WhatsApp</a>
     </div>
+    <a class="ig" href="https://www.instagram.com/beep.sos/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1"/></svg>@beep.sos</a>
     <p>Elegí cómo comprar: Mercado Libre con compra protegida o atención directa por WhatsApp.</p>
   </div>
 </section>
 </main>
 
-<footer>Esta alarma no reemplaza a los servicios de emergencia. Ante un peligro, llamá al 911.</footer>
+<footer>
+  <a class="ig" href="https://www.instagram.com/beep.sos/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1"/></svg>Seguinos en @beep.sos</a><br>
+  Esta alarma no reemplaza a los servicios de emergencia. Ante un peligro, llamá al 911.</footer>
 
 <div class="sticky"><a class="btn" href="#comprar" data-buy>Comprar</a></div>
 
