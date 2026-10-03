@@ -133,6 +133,8 @@ nav .btn{padding:.6em 1.3em;font-size:.9rem}
 .ig svg circle:last-child{fill:currentColor;stroke:none}
 .final .ig{color:#fff;font-size:1.05rem;margin-top:26px}
 footer{color:var(--mut);text-align:center;font-size:.8rem;padding:0 20px 90px}
+footer .wm{margin-top:14px;font-size:.75rem;opacity:.5}
+footer .wm a{color:inherit;text-decoration:none;cursor:default}
 footer .ig{color:var(--paper);font-size:1rem;margin-bottom:14px}
 .sticky{position:fixed;inset:auto 14px 14px;z-index:30;display:none}
 .sticky .btn{width:100%;box-shadow:0 10px 30px rgba(0,0,0,.5)}
@@ -273,7 +275,7 @@ dialog::backdrop{background:rgba(5,5,5,.72);backdrop-filter:blur(6px)}
 
 <footer>
   <a class="ig" href="https://www.instagram.com/beep.sos/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1"/></svg>Seguinos en @beep.sos</a><br>
-  Esta alarma no reemplaza a los servicios de emergencia. Ante un peligro, llamá al 911.  <p style="margin-top:10px;opacity:.45">versión 5</p>
+  Esta alarma no reemplaza a los servicios de emergencia. Ante un peligro, llamá al 911.  <p class="wm"><a href="https://www.instagram.com/squid.designstudio?stkn=MTl6YmJ0MTFnMHpnbA==" target="_blank" rel="noopener">Desarrollado por SquidStudio</a></p>
 </footer>
 
 <div class="sticky"><a class="btn" href="#comprar" data-buy>Comprar</a></div>
@@ -344,7 +346,7 @@ dialog::backdrop{background:rgba(5,5,5,.72);backdrop-filter:blur(6px)}
     countTo(130,900);
     clearTimeout(timer);
     playSound(function(ms){
-      hint.textContent='Sonando: '+(snd||'sin sonido (no se pudo cargar el audio)')+'. Tocá de nuevo para detener.';
+      hint.textContent='Alarma activada. Tocá de nuevo para detener.';
       timer=setTimeout(endAlarm,ms);
     });
   });
